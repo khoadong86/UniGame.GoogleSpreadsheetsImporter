@@ -117,7 +117,8 @@
                 assets,
                 createMissingItems, 
                 maxItemsCount,
-                overrideSheetId ? sheetId : string.Empty);
+                overrideSheetId ? sheetId : string.Empty,
+                assetTemplateName);
             
             result.AddRange(OnPostImportAction(syncedAsset));
 
