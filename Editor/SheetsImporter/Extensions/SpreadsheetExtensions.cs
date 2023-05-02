@@ -36,10 +36,11 @@ namespace UniGame.GoogleSpreadsheetsImporter.Editor
             Object[] assets = null,
             bool createMissing = true, 
             int maxItemsCount = -1,
-            string overrideSheetId = "")
+            string overrideSheetId = "",
+            string assetNameFormatter = ""
         {
             return DefaultProcessor
-                .SyncFolderAssets(filterType, folder, spreadsheetData,assets, createMissing, maxItemsCount, overrideSheetId);
+                .SyncFolderAssets(filterType, folder, spreadsheetData,assets, createMissing, maxItemsCount, overrideSheetId, assetNameFormatter);
         }
         
         public static List<Object> SyncFolderAssets(
