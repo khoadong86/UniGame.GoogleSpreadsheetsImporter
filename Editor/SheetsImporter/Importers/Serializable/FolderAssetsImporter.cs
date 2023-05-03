@@ -110,7 +110,12 @@
             if (filterType == null) return result;
 
             var assets = source.OfType<Object>().ToArray();
-            
+
+            Func<string, string> assetTemplateNameFunc = (input) => {
+                // Lambda expression logic here
+                return assetTemplateName?.Replace("{0}", input); 
+            };
+
             var syncedAsset = filterType.SyncFolderAssets(
                 folder,
                 spreadsheetData,
@@ -118,7 +123,7 @@
                 createMissingItems, 
                 maxItemsCount,
                 overrideSheetId ? sheetId : string.Empty,
-                assetTemplateName);
+                assetTemplateNameFunc);
             
             result.AddRange(OnPostImportAction(syncedAsset));
 

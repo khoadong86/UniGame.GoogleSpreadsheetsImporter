@@ -119,7 +119,7 @@
             }
 
             var values = sheet.GetColumnValues(keysId).ToArray();
-            
+
             var updatedItems = ApplyAssets(
                 filterType,
                 sheetId,
