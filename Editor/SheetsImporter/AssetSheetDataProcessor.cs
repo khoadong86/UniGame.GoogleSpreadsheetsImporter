@@ -118,8 +118,10 @@
                 return result;
             }
 
-            var values = sheet.GetColumnValues(keysId).ToArray();
-
+            var values = sheet.GetColumnValues(keysId)
+                .Where(x => !string.IsNullOrEmpty(x.ToString()))
+                .ToArray();
+            
             var updatedItems = ApplyAssets(
                 filterType,
                 sheetId,
@@ -131,8 +133,12 @@
                 createMissing,
                 string.Empty,assetNameFormatter);
 
-            result.AddRange(updatedItems);
-
+            foreach (var item in updatedItems)
+            {
+                if(result.Contains(item)) continue;
+                result.Add(item);
+            }
+            
             return result;
         }
 
@@ -258,7 +264,9 @@
                     continue;
                 
                 var rowValue     = rowValues[i];
-                var resultValue  = rowValue.ConvertType(itemField.targetType);
+                var result  = rowValue.ConvertType(itemField.targetType);
+                
+                var resultValue = result.Result;
 
                 itemField.ApplyValue(source, resultValue);
 
