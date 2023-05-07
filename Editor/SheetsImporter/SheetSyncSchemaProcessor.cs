@@ -67,9 +67,10 @@
             {
                 var fieldInfo       = fields[i];
                 var customAttribute = filedsAttributes[i];
+                /*
                 if (customAttribute == null && !useAllFields)
                     continue;
-
+                */
                 var fieldName = SheetData.FormatKey(fieldInfo.Name);
                 var sheetField = customAttribute!=null && !customAttribute.useFieldName ? 
                     customAttribute.sheetField : fieldName;
@@ -80,7 +81,10 @@
                     FirstOrDefault() as ISpreadsheetDescription;
                 var fieldSyncScheme = spreadsheetAttribute == null ? null : 
                     CreateSyncScheme(fieldInfo.FieldType, spreadsheetAttribute);
-                
+
+                //if (fieldSyncScheme == null && !useAllFields)
+                //    continue;
+
                 var syncField  = new SyncField(fieldInfo, sheetField,isKeyField,fieldSyncScheme);
 
                 yield return syncField;

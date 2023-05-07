@@ -139,26 +139,16 @@ namespace UniGame.GoogleSpreadsheetsImporter.Editor
             return DefaultProcessor.ApplyData(sheetValue);
         }
 
-        public static TypeConverterResult ConvertType(this object source, Type target)
+        public static object ConvertType(this object source, Type target)
         {
             if (source == null)
             {
-                var result = new TypeConverterResult()
-                {
-                    IsComplete = false,
-                    Result = null,
-                };
-                return result;
+                return null;
             }
 
             if (target.IsInstanceOfType(source))
             {
-                var result = new TypeConverterResult()
-                {
-                    IsComplete = true,
-                    Result = source,
-                };
-                return result;
+                return source;
             }
 
             return ObjectTypeConverter.TypeConverters.ConvertValue(source, target);

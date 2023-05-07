@@ -109,8 +109,11 @@
             
             if (filterType == null) return result;
 
-            var assets = source.OfType<Object>().ToArray();
-
+            var assets = source
+                .OfType<Object>()
+                .Where(x => x!=null)
+                .ToArray();
+            
             Func<string, string> assetTemplateNameFunc = (input) => {
                 // Lambda expression logic here
                 return assetTemplateName?.Replace("{0}", input); 

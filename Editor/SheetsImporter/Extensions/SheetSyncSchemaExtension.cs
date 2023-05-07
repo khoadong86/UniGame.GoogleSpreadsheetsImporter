@@ -37,7 +37,7 @@
 
             return _syncCache[source];
         }
-        
+
         public static SheetSyncScheme CreateSheetScheme(this object source)
         {
             if (source == null) {
